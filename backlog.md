@@ -12,5 +12,10 @@
  ## 4. Faça um programa que solicite o nome do usuário e depois disso faça uma saudação no formato: "Olá {nome digitado pelo usuário}".
  ## 5. Faça um programa que inicialize uma lista com o nome das pessoas da sua família, depois exiba os nomes em ordem alfabética.
  * Exemplo -> [ Nome do pai, nome da mãe, nome do irmão]
+<<<<<<< HEAD
  ## 6. Faça um programa que solicite uma mensagem qualquer para o usuário e exiba esta mensagem com todas as letras em maiúsculo.
  
+=======
+ ## 6. Faça um programa que solicite uma mensagem qualquer para o usuário e exiba esta mensagem com todas letras em maiúsculo.
+
+>>>>>>> 05e0f9bd5c3dd4eda29c443ddf4dea8ef5d99af8
