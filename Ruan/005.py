@@ -3,7 +3,7 @@ familia = []
 quantidade = int(input("Quantas pessoas da sua família você quer adicionar? "))
 
 for i in range(quantidade):
-    nome = input(f"Digite o nome da {i+1}ª pessoa da família: ")
+    nome = input(f"Digite o nome da {i+1} pessoa da família: ")
     familia.append(nome)
 
 
