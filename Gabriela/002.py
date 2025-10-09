@@ -1,7 +1,18 @@
-valor1 = x
-valor2 = y 
+idade = int(input("Digite a sua idade: "))
 
-valor1 = int(input("Digite o primeiro valor: "))
-valor2 = int(input("Digite o segundo valor: "))
+if idade < 0:
+    classificacao = "Idade inválida."
+elif idade <= 11:
+    classificacao = "Criança"
+elif idade <= 18:
+    classificacao = "Adolescente"
+elif idade <= 24:
+    classificacao = "Jovem"
+elif idade <= 40:
+    classificacao = "Adulto"
+elif idade <= 60:
+    classificacao = "Meia Idade"
+else:
+    classificacao = "Idoso"
 
-elif valor1 < valor2 print ("O valor 1")
+print(f"Sua classificação etária é: {classificacao}")
