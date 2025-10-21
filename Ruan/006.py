@@ -1,6 +1,0 @@
-nome = input("Qual o seu nome?(minusculo)")
-nome_maiusculo = nome.upper()   
-print (f"o que foi digitado em minusculo convertido",nome_maiusculo ,"Convertendo para minusculo... ", nome_maiusculo.lower())
-nome_maiusculo = input("Qual o seu nome?(MAIUSCULO)")
-nome_minusculo = nome_maiusculo.lower()
-print (nome_minusculo)

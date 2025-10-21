@@ -1,3 +1,0 @@
-familiares = (input("quais são os seus familiares? "))
-familiares.sort()
-print(familiares)
