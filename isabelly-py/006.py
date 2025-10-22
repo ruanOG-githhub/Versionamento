@@ -1,0 +1,5 @@
+mensagem = input("Digite uma mensagem qualquer: ")
+mensagem_minuscula = mensagem.lower()
+print("Mensagem em minuscula:", mensagem_minuscula)
+mensagem_maiuscula = mensagem.upper()
+print("mensagem em maiusculo",mensagem_maiuscula)

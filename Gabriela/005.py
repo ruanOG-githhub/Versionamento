@@ -1,5 +1,7 @@
-cfamilia = [ "João", "Gislaine", "Hugo"]
-cfamilia.sort()
+familia = ["João", "Gislaine", "Hugo"]
+
+familia.sort()
+
 print("Nomes da família em ordem alfabética:")
-for nome in cfamilia:
-  print(nome)
+for nome in familia:
+    print(nome)
