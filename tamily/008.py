@@ -1,14 +1,23 @@
-frutas = []
-#pede ao usuário para digitar os nomes das frutas 
-frutas.appnd (input("Digite o nome da fruta (laranja):"))
-frutas.appnd (input("Digite o nome da fruta (limão):"))
-frutas.appnd (input("Digite o nome da fruta (banana):"))
-frutas.appnd (input("Digite o nome da fruta (pera):"))
-frutas.appnd (input("Digite o nome da fruta (uva):"))
-#mostra as frutas na ordem pedida
-print("\nFrutas na ordem definida:")
-print(f"1- {frutas{0}}")
-print(f"2- {frutas{1}}")
-print(f"3- {frutas{2}}")
-print(f"4- {frutas{3}}")
-print()
+lista_frutas = []
+
+
+print("Digite os nomes das frutas a seguir. As opções são: Laranja, Banana, Limão, Pera, Uva")
+print("Digite exatamente como está, com letra maiúscula no início.\n")
+
+
+laranja = input("Digite a fruta nº 1 (Laranja): ")
+limao = input("Digite a fruta nº 2 (Limão): ")
+banana = input("Digite a fruta nº 3 (Banana): ")
+pera = input("Digite a fruta nº 4 (Pera): ")
+uva = input("Digite a fruta nº 5 (Uva): ")
+
+
+lista_frutas.append(f"1º {laranja}")
+lista_frutas.append(f"2º {limao}")
+lista_frutas.append(f"3º {banana}")
+lista_frutas.append(f"4º {pera}")
+lista_frutas.append(f"5º {uva}")
+
+
+print("\nLista de frutas na ordem definida:")
+print(lista_frutas)
