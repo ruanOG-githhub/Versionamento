@@ -16,4 +16,5 @@
  ## 7. Faça um progrma que solicite ao usuário 3 nomes de cidades, um por vez, cada vez que o usuário digitar o nome, o programa deve incluir este nome na lista de cidades e depois imprimir mostrando a lista atualizada.
  * Lista_cidades [ Belo Horizonte] ---> lista atualizada [ Belo Horizonte, Ribeirão das neves]
  * Altere o programa para que possa incluir qualquer numero de cidades e para que o programa finalize o usuário digite ( SAIR ).
- 
+ ## 9. Faça um programa que solicite o nome  completo do usuário, e exiba apenas o seu segundo nome, ou seja ( sobrenome ).
+ * Exemplo [ JOANATAS FERNANDES ]  -> print(" FERNANDES " )
