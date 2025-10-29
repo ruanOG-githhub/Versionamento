@@ -11,12 +11,14 @@
 
  ## 4. Faça um programa que solicite o nome do usuário e depois disso faça uma saudação no formato: "Olá {nome digitado pelo usuário}".
  ## 5. Faça um programa que inicialize uma lista com o nome das pessoas da sua família, depois exiba os nomes em ordem alfabética.
- * Exemplo -> [ Nome do pai, nome da mãe, nome do irmão]
-<<<<<<< HEAD
- ## 6. Faça um programa que solicite uma mensagem qualquer para o usuário e exiba esta mensagem com todas as letras em maiúsculo.
-  * Exeplo -> [ Nome do pai, da mãe, nome do irmão]
-=======
- ## 7. Faça um programa que solicite ao usuario 3 nome de cidades, um por vez que o usuário diditar o nome, o programa deve incluir este nome na lista de cidade e depois imprimir mostrando a lista atulizada.
- *Lista_cidade [Belo Horizonte] ---> lista atualizada [Belo Horizonte, Ribeirão das Neves]
+ 
+ ## 6.faça um programa que solicite uma mensagem qualquer para o usuario e exiba esta mensagem com todas as letras em maiúsculo
+ ## 7. Faça um programa que solicite ao usuário 3 nomes de cidades, um por vez, cada vez que o usuário digitar o nome, o programa deve incluir este nome na lista de cidades e depois imprimir mostrando a lista atualizada.
+ * Lista_cidades [ Belo Horizonte] ---> lista atualizada [ Belo Horizonte, Ribeirão das neves]
+ * Altere o programa para que possa incluir qualquer numero de cidades e para que o programa finalize o usuário digite ( SAIR ).
+ ## 8. Altere o programa para que possa incluir qualquer numero de cidades e para que o programa finalize o usuário digite ( SAIR ).
+ ## 9. Faça um programa que solicite o nome  completo do usuário, e exiba apenas o seu segundo nome, ou seja ( sobrenome ).
+ * Exemplo [ JOANATAS FERNANDES ]  -> print(" FERNANDES " )
+ ## 10. Faça um programa que inicialize uma lista com vários numeros diferentes, depois disso solicite ao usuário um número, verifique se o número está ou não na lista e exiba uma mensagem notificando o usuário de resultado.
 
 
