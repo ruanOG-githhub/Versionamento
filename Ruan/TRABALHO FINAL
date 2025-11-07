@@ -1,0 +1,234 @@
+def calcular_marmitas_possiveis(estoque, consumo):
+    """Calcula quantas marmitas podem ser feitas com o estoque atual."""
+    qtd_por_insumo = []
+    for item, qtd in consumo.items():
+        if item not in estoque or estoque[item] < consumo[item]:
+            return 0
+        qtd_por_insumo.append(estoque[item] // consumo[item])
+    return int(min(qtd_por_insumo)) if qtd_por_insumo else 0
+
+
+def mostrar_estoque(estoque):
+    """Mostra o estoque atual."""
+    print("\n=== ESTOQUE ATUAL ===")
+    for item, qtd in estoque.items():
+        print(f"{item.capitalize():<15}: {qtd:.2f} g")
+    print("======================\n")
+
+
+def menu_estoque(estoque):
+    """Menu de administração do estoque."""
+    while True:
+        print("\n=== MENU DE ESTOQUE ===")
+        print("1 - Mostrar estoque")
+        print("2 - Adicionar insumos (Aumentar estoque)")
+        print("3 - Zerar estoque")
+        print("4 - Voltar ao menu principal")
+        opcao = input("Escolha uma opção: ")
+
+        if opcao == "1":
+            mostrar_estoque(estoque)
+
+        elif opcao == "2":
+            print("\nDigite a quantidade a ADICIONAR (em gramas):")
+            for item in estoque:
+                try:
+                    qtd = float(input(f"{item.capitalize()}: "))
+                    if qtd > 0:
+                        estoque[item] += qtd
+                except ValueError:
+                    print("Valor inválido. Ignorando entrada.")
+            print("\n✅ Estoque atualizado com sucesso!")
+
+        elif opcao == "3":
+            confirm = input("Tem certeza que deseja zerar o estoque? (S/N): ").upper()
+            if confirm == "S":
+                for item in estoque:
+                    estoque[item] = 0
+                print("⚠️ Estoque zerado com sucesso!")
+
+        elif opcao == "4":
+            print("↩️ Retornando ao menu principal...")
+            break
+        else:
+            print("❌ Opção inválida! Tente novamente.")
+
+
+def menu_vendas_marmita(estoque, consumos, precos, faturamento, vendas):
+    """Menu de vendas de marmitas."""
+    while True:
+        print("\n=== MENU DE MARMITAS ===")
+        print("1 - Marmita GRANDE (R$ 25,00)")
+        print("2 - Marmita PEQUENA (R$ 15,00)")
+        print("3 - Voltar ao menu de vendas")
+
+        print(f"\n💰 Faturamento atual: R$ {faturamento:.2f}")
+        print(f"📦 Marmitas possíveis:")
+        print(f" - G: {calcular_marmitas_possiveis(estoque, consumos['G'])}")
+        print(f" - P: {calcular_marmitas_possiveis(estoque, consumos['P'])}")
+
+        opcao = input("\nEscolha uma opção: ")
+
+        if opcao == "3":
+            break
+        elif opcao not in ["1", "2"]:
+            print("❌ Opção inválida!")
+            continue
+
+        tipo = "G" if opcao == "1" else "P"
+        consumo = consumos[tipo]
+        preco = precos[tipo]
+
+        if all(estoque[item] >= consumo[item] for item in consumo):
+            for item in consumo:
+                estoque[item] -= consumo[item]
+            faturamento += preco
+            vendas[tipo] += 1
+            print(f"✅ Marmita {'GRANDE' if tipo=='G' else 'PEQUENA'} vendida! (+R$ {preco:.2f})")
+        else:
+            print("⚠️ Estoque insuficiente para essa marmita!")
+
+    return faturamento, vendas
+
+
+def menu_vendas_bebidas(faturamento, vendas_bebidas):
+    """Menu de vendas de bebidas."""
+    bebidas = {
+        "1": ("Coca-Cola 1L", 14.00),
+        "2": ("Coca-Cola 500ml", 7.00),
+        "3": ("Coca-Cola latinha 250ml", 5.00),
+        "4": ("Pepsi 1L", 14.00),
+        "5": ("Pepsi 500ml", 7.00),
+        "6": ("Pepsi latinha 250ml", 5.00),
+        "7": ("Guaraná 1L", 14.00),
+        "8": ("Guaraná 500ml", 7.00),
+        "9": ("Guaraná latinha 250ml", 5.00),
+        "10": ("Suco de Uva 1L", 10.00),
+        "11": ("Suco de Uva 500ml", 6.00),
+        "12": ("Suco de Laranja 1L", 10.00),
+        "13": ("Suco de Laranja 500ml", 6.00)
+    }
+
+    while True:
+        print("\n=== MENU DE BEBIDAS ===")
+        for cod, (nome, preco) in bebidas.items():
+            print(f"{cod} - {nome:<25} R$ {preco:.2f}")
+        print("0 - Voltar ao menu de vendas")
+
+        print(f"\n💰 Faturamento atual: R$ {faturamento:.2f}")
+        opcao = input("Escolha uma bebida: ")
+
+        if opcao == "0":
+            break
+        elif opcao in bebidas:
+            nome, preco = bebidas[opcao]
+            faturamento += preco
+            vendas_bebidas[nome] = vendas_bebidas.get(nome, 0) + 1
+            print(f"✅ {nome} vendida! (+R$ {preco:.2f})")
+        else:
+            print("❌ Opção inválida!")
+
+    return faturamento, vendas_bebidas
+
+
+def menu_vendas(estoque, consumos, precos, faturamento, vendas_marmitas, vendas_bebidas):
+    """Menu principal de vendas (marmitas e bebidas separadas)."""
+    while True:
+        print("\n=== MENU DE VENDAS ===")
+        print("1 - Vender MARMITAS")
+        print("2 - Vender BEBIDAS")
+        print("3 - Voltar ao menu principal")
+
+        opcao = input("Escolha uma opção: ")
+
+        if opcao == "1":
+            faturamento, vendas_marmitas = menu_vendas_marmita(
+                estoque, consumos, precos, faturamento, vendas_marmitas
+            )
+        elif opcao == "2":
+            faturamento, vendas_bebidas = menu_vendas_bebidas(faturamento, vendas_bebidas)
+        elif opcao == "3":
+            break
+        else:
+            print("❌ Opção inválida!")
+
+    return faturamento, vendas_marmitas, vendas_bebidas
+
+
+def main():
+    print("=== SISTEMA DE CONTROLE DE MARMITEX E BEBIDAS ===")
+
+    # Estoque inicial (em gramas)
+    estoque = {
+        "arroz": float(input("Digite a quantidade de ARROZ no estoque (g): ")),
+        "feijao": float(input("Digite a quantidade de FEIJÃO no estoque (g): ")),
+        "carne": float(input("Digite a quantidade de CARNE no estoque (g): ")),
+        "salada": float(input("Digite a quantidade de SALADA no estoque (g): ")),
+        "batata": float(input("Digite a quantidade de BATATA no estoque (g): ")),
+        "macarrao": float(input("Digite a quantidade de MACARRÃO no estoque (g): ")),
+        "peixe": float(input("Digite a quantidade de PEIXE no estoque (g): ")),
+        "carne de porco": float(input("Digite a quantidade de CARNE DE PORCO no estoque (g): ")),
+        "carne de frango": float(input("Digite a quantidade de CARNE DE FRANGO no estoque (g): "))
+    }
+
+    # Consumo por marmita
+    consumo_G = {
+        "arroz": 100, "feijao": 50, "carne": 25, "salada": 10,
+        "batata": 20, "macarrao": 30, "peixe": 20,
+        "carne de porco": 25, "carne de frango": 25
+    }
+    consumo_P = {
+        "arroz": 50, "feijao": 25, "carne": 15, "salada": 5,
+        "batata": 10, "macarrao": 15, "peixe": 10,
+        "carne de porco": 15, "carne de frango": 15
+    }
+
+    consumos = {"G": consumo_G, "P": consumo_P}
+    precos = {"G": 25.0, "P": 15.0}
+
+    faturamento = 0.0
+    vendas_marmitas = {"G": 0, "P": 0}
+    vendas_bebidas = {}
+
+    while True:
+        print("\n=== MENU PRINCIPAL ===")
+        print("1 - Menu de Vendas")
+        print("2 - Menu de Estoque")
+        print("3 - Mostrar resumo atual")
+        print("4 - Sair e mostrar relatório final")
+
+        opcao = input("Escolha uma opção: ")
+
+        if opcao == "1":
+            faturamento, vendas_marmitas, vendas_bebidas = menu_vendas(
+                estoque, consumos, precos, faturamento, vendas_marmitas, vendas_bebidas
+            )
+        elif opcao == "2":
+            menu_estoque(estoque)
+        elif opcao == "3":
+            print("\n=== RESUMO ATUAL ===")
+            mostrar_estoque(estoque)
+            print(f"💰 Faturamento total: R$ {faturamento:.2f}")
+            print(f"📦 Marmitas vendidas: {vendas_marmitas['G']} G | {vendas_marmitas['P']} P")
+            print(f"🥤 Bebidas vendidas:")
+            for nome, qtd in vendas_bebidas.items():
+                print(f" - {nome}: {qtd} un.")
+        elif opcao == "4":
+            break
+        else:
+            print("❌ Opção inválida.")
+
+    # Relatório final
+    print("\n===== RELATÓRIO FINAL =====")
+    print(f"Total marmitas grandes: {vendas_marmitas['G']}")
+    print(f"Total marmitas pequenas: {vendas_marmitas['P']}")
+    print("Bebidas vendidas:")
+    for nome, qtd in vendas_bebidas.items():
+        print(f" - {nome}: {qtd}")
+    print(f"💵 Faturamento total: R$ {faturamento:.2f}")
+    mostrar_estoque(estoque)
+    print("===========================\n")
+
+
+if __name__ == "__main__":
+    main()
