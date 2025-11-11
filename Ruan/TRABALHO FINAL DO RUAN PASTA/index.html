@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Marmitex</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1> Sistema de Controle de Marmitex e Bebidas</h1>
+
+        <div id="main-menu" class="menu">
+            <button onclick="abrirMenu('vendas')"> Menu de Vendas</button>
+            <button onclick="abrirMenu('estoque')"> Menu de Estoque</button>
+            <button onclick="mostrarResumo()">Mostrar Resumo</button>
+            <button onclick="mostrarRelatorioFinal()"> Sair</button>
+        </div>
+
+        <div id="estoque-menu" class="menu oculto">
+            <h2>Estoque Atual</h2>
+            <div id="estoque"></div>
+            <button onclick="adicionarEstoque()">➕ Adicionar Estoque</button>
+            <button onclick="zerarEstoque()"> Zerar Estoque</button>
+            <button onclick="voltarMenu()">↩ Voltar</button>
+        </div>
+
+        <div id="vendas-menu" class="menu oculto">
+            <h2> Menu de Vendas</h2>
+            <button onclick="venderMarmita('G')"> Marmita Grande (R$25)</button>
+            <button onclick="venderMarmita('P')"> Marmita Pequena (R$15)</button>
+            <button onclick="venderBebida()"> Vender Bebida</button>
+            <button onclick="voltarMenu()">↩ Voltar</button>
+
+            <div id="status-vendas"></div>
+        </div>
+
+        <div id="resumo" class="oculto"></div>
+        <div id="relatorio-final" class="oculto"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
